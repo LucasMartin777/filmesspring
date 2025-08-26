@@ -1,6 +1,6 @@
 package br.com.alura.filmesspring.exercicios;
 
-public class exercicio2 {
+public class Exercicio2 {
 //    - Implemente uma expressão lambda que verifique se um número é primo.
 
     @FunctionalInterface

@@ -1,6 +1,6 @@
 package br.com.alura.filmesspring.exercicios;
 
-public class exercicio3 {
+public class Exercicio3 {
     @FunctionalInterface
     public interface Transformador {
         String executar(String a);
