@@ -1,4 +1,4 @@
-package br.com.alura.filmesspring.exercicios;
+package br.com.alura.filmesspring.exercicios.exercicios1;
 
 public class Exercicio2 {
 //    - Implemente uma expressão lambda que verifique se um número é primo.

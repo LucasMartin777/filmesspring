@@ -1,4 +1,4 @@
-package br.com.alura.filmesspring.exercicios;
+package br.com.alura.filmesspring.exercicios.exercicios1;
 
 public class Exercicio1 {
 //    1 - Crie uma expressão lambda que multiplique dois números inteiros.

@@ -1,4 +1,4 @@
-package br.com.alura.filmesspring.exercicios;
+package br.com.alura.filmesspring.exercicios.exercicios1;
 
 import java.util.Arrays;
 import java.util.List;
