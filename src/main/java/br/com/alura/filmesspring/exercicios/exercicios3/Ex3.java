@@ -17,8 +17,10 @@ public class Ex3 {
 
         // Resultado Esperado: "Alice, Bob, Charlie"
 
-//        Map<Integer,String> agrupamento = nomes.stream()
-//                .collect(Collectors.groupingBy(e -> e.concat()));
+        String agrupamento = nomes.stream()
+                .collect(Collectors.joining(", "));
+
+        System.out.println(agrupamento);
 
     }
 }
