@@ -16,7 +16,7 @@ public class FilmesspringApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         ClassePrincipal run = new ClassePrincipal();
-        run.exibMenu();
+        run.exibeMenu();
 
     }
 }
