@@ -1,4 +1,4 @@
-package br.com.alura.filmesspring.model;
+package br.com.alura.filmesspring.model.records;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;

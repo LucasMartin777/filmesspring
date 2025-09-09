@@ -1,4 +1,4 @@
-package br.com.alura.filmesspring.model;
+package br.com.alura.filmesspring.model.enums;
 
 public enum Categoria {
     ACAO("Action"),

@@ -1,8 +1,8 @@
 package br.com.alura.filmesspring.principal;
 
-import br.com.alura.filmesspring.model.DadosSerie;
-import br.com.alura.filmesspring.model.DadosTemporada;
-import br.com.alura.filmesspring.model.Serie;
+import br.com.alura.filmesspring.model.records.DadosSerie;
+import br.com.alura.filmesspring.model.records.DadosTemporada;
+import br.com.alura.filmesspring.model.entity.Serie;
 import br.com.alura.filmesspring.service.ConsumoApi;
 import br.com.alura.filmesspring.service.ConverteDados;
 

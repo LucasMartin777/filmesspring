@@ -1,4 +1,6 @@
-package br.com.alura.filmesspring.model;
+package br.com.alura.filmesspring.model.entity;
+
+import br.com.alura.filmesspring.model.records.DadosEpisodio;
 
 import java.time.DateTimeException;
 import java.time.LocalDate;

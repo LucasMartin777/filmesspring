@@ -1,5 +1,6 @@
-package br.com.alura.filmesspring.model;
+package br.com.alura.filmesspring.model.entity;
 
+import br.com.alura.filmesspring.model.records.DadosTraducao;
 import br.com.alura.filmesspring.service.ConsumoApi;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

@@ -1,5 +1,8 @@
-package br.com.alura.filmesspring.model;
+package br.com.alura.filmesspring.model.entity;
 
+
+import br.com.alura.filmesspring.model.records.DadosSerie;
+import br.com.alura.filmesspring.model.enums.Categoria;
 
 import java.util.OptionalDouble;
 
@@ -15,7 +18,7 @@ public class Serie {
     public Serie(DadosSerie dadosSerie) {
         this.titulo = dadosSerie.titulo();
         this.totalTemporadas = dadosSerie.totalTemporadas();
-        this.avaliacao = OptionalDouble.of(Double.valueOf(dadosSerie.avaliacao())).orElse(0);
+        this.avaliacao = OptionalDouble.of(Double.parseDouble(dadosSerie.avaliacao())).orElse(0);
         this.genero = Categoria.fromString(dadosSerie.genero().split(",")[0].trim());
         this.atores = dadosSerie.atores();
         this.poster = dadosSerie.poster();
