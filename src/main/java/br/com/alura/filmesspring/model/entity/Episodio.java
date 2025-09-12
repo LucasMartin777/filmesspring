@@ -1,11 +1,21 @@
 package br.com.alura.filmesspring.model.entity;
 
 import br.com.alura.filmesspring.model.records.DadosEpisodio;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 import java.time.DateTimeException;
 import java.time.LocalDate;
 
+//@Entity
 public class Episodio {
+
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     private Integer temporada;
     private String titulo;
     private Integer numeroEpisodio;
