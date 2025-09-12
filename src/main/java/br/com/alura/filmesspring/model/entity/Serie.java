@@ -38,6 +38,10 @@ public class Serie {
     @Transient
     private List<Episodio> episodios = new ArrayList<>();
 
+    public Serie() { //Preciso desse construtor padrao tbm
+
+    }
+
 
     public List<Episodio> getEpisodios() {
         return episodios;

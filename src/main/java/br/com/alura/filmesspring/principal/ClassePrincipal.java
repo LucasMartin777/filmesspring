@@ -1,13 +1,16 @@
 package br.com.alura.filmesspring.principal;
 
+import br.com.alura.filmesspring.model.entity.Serie;
 import br.com.alura.filmesspring.model.records.DadosSerie;
 import br.com.alura.filmesspring.model.records.DadosTemporada;
-import br.com.alura.filmesspring.model.entity.Serie;
+import br.com.alura.filmesspring.model.repository.SerieRepository;
 import br.com.alura.filmesspring.service.ConsumoApi;
 import br.com.alura.filmesspring.service.ConverteDados;
 
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Scanner;
 
 public class ClassePrincipal {
 
@@ -17,6 +20,12 @@ public class ClassePrincipal {
     private final String ENDERECO = "https://www.omdbapi.com/?t=";
     private final String API_KEY = "&apikey=6585022c";
     List<DadosSerie> dadosSeries = new ArrayList<>();
+
+    private SerieRepository repository;
+
+    public ClassePrincipal(SerieRepository repository) {
+        this.repository = repository;
+    }
 
     public void exibeMenu() {
         var opcao = -1;
@@ -56,10 +65,7 @@ public class ClassePrincipal {
 
     private void listarSeriesBuscadas() {
 
-        List<Serie> series = new ArrayList<>();
-        series = dadosSeries.stream()
-                .map(d -> new Serie(d))
-                .collect(Collectors.toList());
+        List<Serie> series = repository.findAll();
         series.stream()
                 .sorted(Comparator.comparing(Serie::getGenero))
                 .forEach(System.out::println);
@@ -68,7 +74,9 @@ public class ClassePrincipal {
 
     private void buscarSerieWeb() {
         DadosSerie dados = getDadosSerie();
-        dadosSeries.add(dados);
+        Serie serie = new Serie(dados);
+//      dadosSeries.add(dados);
+        repository.save(serie);// o Spring que esta gerenciando a travez do Autowire
         System.out.println(dados);
     }
 
