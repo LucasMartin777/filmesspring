@@ -5,7 +5,6 @@ import br.com.alura.filmesspring.model.enums.Categoria;
 import br.com.alura.filmesspring.model.records.DadosSerie;
 import jakarta.persistence.*;
 
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.OptionalDouble;
@@ -35,7 +34,7 @@ public class Serie {
     private String sinopse;
 
 
-    @Transient
+    @OneToMany(mappedBy = "serie", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Episodio> episodios = new ArrayList<>();
 
     public Serie() { //Preciso desse construtor padrao tbm
@@ -48,6 +47,7 @@ public class Serie {
     }
 
     public void setEpisodios(List<Episodio> episodios) {
+        episodios.forEach(e -> e.setSerie(this));
         this.episodios = episodios;
     }
 
@@ -128,12 +128,13 @@ public class Serie {
     @Override
     public String toString() {
         return
-                ", genero=" + genero +
-                        "titulo='" + titulo + '\'' +
+                "genero=" + genero +
+                        ", titulo='" + titulo + '\'' +
                         ", totalTemporadas=" + totalTemporadas +
                         ", avaliacao=" + avaliacao +
                         ", atores='" + atores + '\'' +
                         ", poster='" + poster + '\'' +
-                        ", sinopse='" + sinopse + '\'';
+                        ", sinopse='" + sinopse + '\'' +
+                        ", episodios='" + episodios + '\'';
     }
 }

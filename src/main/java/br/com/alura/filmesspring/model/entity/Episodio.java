@@ -1,19 +1,17 @@
 package br.com.alura.filmesspring.model.entity;
 
 import br.com.alura.filmesspring.model.records.DadosEpisodio;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.time.DateTimeException;
 import java.time.LocalDate;
 
-//@Entity
+@Entity
+@Table(name = "episodios")
 public class Episodio {
 
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private Integer temporada;
@@ -21,6 +19,9 @@ public class Episodio {
     private Integer numeroEpisodio;
     private Double avaliacao;
     private LocalDate dataLancamento;
+
+    @ManyToOne
+    private Serie serie;
 
     public Episodio(Integer numeroTemporada, DadosEpisodio dadosEpisodio) {
         this.temporada = numeroTemporada;
@@ -41,6 +42,9 @@ public class Episodio {
         }
     }
 
+    public Episodio() {
+    }
+
     @Override
     public String toString() {
         return "Episodio{" +
@@ -50,6 +54,10 @@ public class Episodio {
                 ", avaliacao=" + avaliacao +
                 ", dataLancamento=" + dataLancamento +
                 '}';
+    }
+
+    public void setSerie(Serie serie) {
+        this.serie = serie;
     }
 
     public Integer getTemporada() {
