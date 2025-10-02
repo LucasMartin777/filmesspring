@@ -35,6 +35,9 @@ public class ClassePrincipal {
                     1 - Buscar séries
                     2 - Buscar episódios
                     3 - Listar series buscadas
+                    4 - BuscarSeriePorTitulo
+                    5 - BuscarSeriePorAtor
+                    
                     0 - Sair
                     """;
 
@@ -53,6 +56,12 @@ public class ClassePrincipal {
                 case 3:
                     listarSeriesBuscadas();
                     break;
+                case 4:
+                    buscarSeriePorTitulo();
+                    break;
+                case 5:
+                    buscarSeriePorAtor();
+                    break;
                 case 0:
                     System.out.println("Saindo...");
                     break;
@@ -63,6 +72,8 @@ public class ClassePrincipal {
 
         }
     }
+
+
 
     private void listarSeriesBuscadas() {
 
@@ -76,7 +87,6 @@ public class ClassePrincipal {
     private void buscarSerieWeb() {
         DadosSerie dados = getDadosSerie();
         Serie serie = new Serie(dados);
-//      dadosSeries.add(dados);
         repository.save(serie);// o Spring que esta gerenciando a travez do Autowire
         System.out.println(dados);
     }
@@ -94,11 +104,10 @@ public class ClassePrincipal {
         System.out.println("Escolha uma serie pelo nome: ");
         var nomeSerie = leitura.nextLine();
 
-        Optional<Serie> serie = series.stream()
-                .filter(s -> s.getTitulo().toLowerCase().contains(nomeSerie.toLowerCase()))
-                .findFirst();
+        Optional<Serie> serie = repository.findByTituloContainingIgnoreCase(nomeSerie);
 
         if (serie.isPresent()) {
+
             var serieEncontrada = serie.get();
 
             List<DadosTemporada> temporadas = new ArrayList<>();
@@ -120,6 +129,21 @@ public class ClassePrincipal {
             System.out.println("Serie nao encontrada");
         }
     }
+
+    private void buscarSeriePorTitulo() {
+        System.out.println("Escolha uma serie pelo nome: ");
+        var nomeSerie = leitura.nextLine();
+        Optional<Serie> serieBuscada = repository.findByTituloContainingIgnoreCase(nomeSerie);
+
+        if (serieBuscada.isPresent()) {
+            System.out.println("Dados da serie: " + serieBuscada.get());
+        } else {
+            System.out.println("Série nao encontrada");
+        }
+    }
+    private void buscarSeriePorAtor() {
+    }
+
 
 
 }
