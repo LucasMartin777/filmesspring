@@ -187,7 +187,7 @@ public class ClassePrincipal {
         Integer numeroTemps = leitura.nextInt();
         System.out.println("Avaliacoes a partir de que valor?");
         var avaliacao = leitura.nextDouble();
-        List<Serie> seriesPorNumeroDeTemporadas = repository.findBytotalTemporadasLessThanEqualAndAvaliacaoGreaterThanEqual(numeroTemps, avaliacao);
+        List<Serie> seriesPorNumeroDeTemporadas = repository.seriesPorTemporadaEAvaliacao(numeroTemps,avaliacao);
         seriesPorNumeroDeTemporadas.forEach(System.out::println);
     }
 

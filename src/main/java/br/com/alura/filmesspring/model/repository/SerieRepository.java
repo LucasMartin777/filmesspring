@@ -3,6 +3,7 @@ package br.com.alura.filmesspring.model.repository;
 import br.com.alura.filmesspring.model.entity.Serie;
 import br.com.alura.filmesspring.model.enums.Categoria;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,5 +18,8 @@ public interface SerieRepository extends JpaRepository<Serie, Long> {//esse long
 
     List<Serie> findByGenero(Categoria categoria);
 
-    List<Serie> findBytotalTemporadasLessThanEqualAndAvaliacaoGreaterThanEqual(Integer numeroTemporadas,Double avaliacao);
+    List<Serie> findBytotalTemporadasLessThanEqualAndAvaliacaoGreaterThanEqual(Integer numeroTemporadas, Double avaliacao);
+
+    @Query("SELECT s FROM Serie s WHERE s.totalTemporadas <= :numeroTemporadas AND s.avaliacao >= :avaliacao")
+    List<Serie> seriesPorTemporadaEAvaliacao(Integer numeroTemporadas, Double avaliacao);
 }
