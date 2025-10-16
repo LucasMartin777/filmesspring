@@ -99,4 +99,8 @@ public class Episodio {
     public void setDataLancamento(LocalDate dataLancamento) {
         this.dataLancamento = dataLancamento;
     }
+
+    public Serie getSerie() {
+        return serie;
+    }
 }

@@ -1,5 +1,6 @@
 package br.com.alura.filmesspring.model.repository;
 
+import br.com.alura.filmesspring.model.entity.Episodio;
 import br.com.alura.filmesspring.model.entity.Serie;
 import br.com.alura.filmesspring.model.enums.Categoria;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -18,8 +19,17 @@ public interface SerieRepository extends JpaRepository<Serie, Long> {//esse long
 
     List<Serie> findByGenero(Categoria categoria);
 
-    List<Serie> findBytotalTemporadasLessThanEqualAndAvaliacaoGreaterThanEqual(Integer numeroTemporadas, Double avaliacao);
+//    List<Serie> findBytotalTemporadasLessThanEqualAndAvaliacaoGreaterThanEqual(Integer numeroTemporadas, Double avaliacao);
 
     @Query("SELECT s FROM Serie s WHERE s.totalTemporadas <= :numeroTemporadas AND s.avaliacao >= :avaliacao")
     List<Serie> seriesPorTemporadaEAvaliacao(Integer numeroTemporadas, Double avaliacao);
+
+    @Query("SELECT e FROM Serie s JOIN s.episodios e WHERE e.titulo ILIKE %:trechoEpisodio%")
+    List<Episodio> episodiosPorTrecho(String trechoEpisodio);
+
+    @Query("SELECT e FROM Serie s JOIN s.episodios e WHERE s = :serie ORDER BY e.avaliacao DESC LIMIT 5")
+    List<Episodio> topEpisodiosPorSerie(Serie serie);
+
+    @Query("SELECT e FROM Serie s JOIN s.episodios e WHERE s = :serie AND YEAR(e.dataLancamento) >= :anoLancamento")
+    List<Episodio> episodiosPorSerieEAno(Serie serie, int anoLancamento);
 }
